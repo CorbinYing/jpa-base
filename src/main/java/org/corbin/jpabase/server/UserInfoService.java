@@ -1,5 +1,6 @@
 package org.corbin.jpabase.server;
 
+import org.corbin.jpabase.base.service.BaseService;
 import org.corbin.jpabase.entity.UserInfo;
 import org.corbin.jpabase.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,9 @@ import java.util.Random;
  * @date 2019/06/15
  */
 @Service
-public class UserInfoService{
+public class UserInfoService extends BaseService<UserInfo,Long> {
     @Autowired
     private UserInfoRepository userInfoRepository;
-
 
 
 //    public void Test1(){
@@ -25,23 +25,22 @@ public class UserInfoService{
 //    }
 
 
-    public void insertUser(){
-        UserInfo userInfo=new UserInfo();
+    public void insertUser() {
+        UserInfo userInfo = new UserInfo();
         userInfo.setId(new Random().nextLong());
         userInfo.setName("yin");
         userInfoRepository.save(userInfo);
-        userInfoRepository.test();
-       List<Object[]> list= userInfoRepository.sqlArrayList("select * from user_info");
-       Object[] obj1=list.get(0);
-        for (Object s:obj1
-             ) {
-            System.out.println(s);
-
-        }
-       list.forEach(System.out::println);
-
-//       list=userInfoRepository.findAll();
+        List<UserInfo> list = userInfoRepository.queryArrayListByHql("select a from UserInfo a");
+//       Object[] obj1=list.get(0);
+//        for (Object s:obj1
+//             ) {
+//            System.out.println(s);
+//
+//        }
 //       list.forEach(System.out::println);
+
+    //    list = userInfoRepository.findAll();
+        list.forEach(System.out::println);
 
     }
 }

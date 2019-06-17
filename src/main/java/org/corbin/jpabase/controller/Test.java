@@ -1,5 +1,6 @@
 package org.corbin.jpabase.controller;
 
+import org.corbin.jpabase.entity.UserInfo;
 import org.corbin.jpabase.server.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,8 @@ public class Test {
     public void testCreateTable(){
       //  userInfoService.testCommonService();
         userInfoService.insertUser();
-    //    userInfoService.findByPk(123L);
+       UserInfo u= userInfoService.findByPK(5000937294228808804L);
+       System.out.println(u);
 
     }
 }

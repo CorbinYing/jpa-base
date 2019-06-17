@@ -17,7 +17,18 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>yin</name>
+            <email>corbin_yin@163.com</email>
+        </developer>
+    </developers>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

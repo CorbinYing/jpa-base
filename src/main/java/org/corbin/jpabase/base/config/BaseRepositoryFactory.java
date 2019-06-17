@@ -1,10 +1,10 @@
-package org.corbin.jpabase.base;
+package org.corbin.jpabase.base.config;
 
+import org.corbin.jpabase.base.dao.BaseRepositoryImpl;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;

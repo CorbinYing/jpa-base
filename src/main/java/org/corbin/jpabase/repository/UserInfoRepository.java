@@ -1,6 +1,6 @@
 package org.corbin.jpabase.repository;
 
-import org.corbin.jpabase.base.BaseRepository;
+import org.corbin.jpabase.base.dao.BaseRepository;
 import org.corbin.jpabase.entity.UserInfo;
 import org.springframework.stereotype.Repository;
 

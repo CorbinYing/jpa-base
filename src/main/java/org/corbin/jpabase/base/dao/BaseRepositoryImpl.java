@@ -1,6 +1,5 @@
-package org.corbin.jpabase.base;
+package org.corbin.jpabase.base.dao;
 
-import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import javax.persistence.EntityManager;
@@ -28,11 +27,30 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         this.em = em;
     }
 
-
-
+    /**
+     * 查询多个属性
+     * 返回List<Object[]>数组形式的List，数组中内容按照查询字段先后
+     *
+     * @param hql HQL语句
+     * @return
+     */
     @Override
-    public void test() {
-        System.out.println("_____________________________________________________________________________________________");
+    public List<T> queryArrayListByHql(String hql) {
+        Query query = em.createQuery(hql);
+        List<T> list = query.getResultList();
+        return list;
+    }
+
+    /**
+     * 根据hql语句查询一个实体
+     *
+     * @param hql
+     * @return
+     */
+    @Override
+    public T queryOneByHql(String hql) {
+        Query query = em.createQuery(hql);
+        return (T) query.getSingleResult();
     }
 
     //通过EntityManager来完成查询
@@ -42,6 +60,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }*/
 
 
+/*
     @Override
     public List<Object[]> sqlArrayList(String sql) {
         Query query = em.createNativeQuery(sql);
@@ -49,13 +68,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         em.close();
         return list;
     }
+*/
 
-    @Override
-    public List<T> sqlArrayList2(String sql) {
-        Query query = em.createNativeQuery(sql);
-        List<Object[]> list = query.getResultList();
-        query.
-        em.close();
-        return list;
-    }
+
 }
