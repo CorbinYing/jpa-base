@@ -1,6 +1,7 @@
 package org.corbin.jpabase.base.service;
 
 import org.corbin.jpabase.base.dao.BaseRepository;
+import org.corbin.jpabase.base.dao.CustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.Example;
@@ -12,6 +13,7 @@ import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +31,9 @@ public abstract class BaseService<T, ID extends Serializable> {
      * 根据bean的类型，动态注入
      */
     @Autowired
-    private BaseRepository<T, ID> baseRepository;
+    private BaseRepository<T,ID> baseRepository;
+    @Autowired
+    private CustomRepository customRepository;
 
     /**
      * select a union domain by PK
@@ -172,8 +176,8 @@ public abstract class BaseService<T, ID extends Serializable> {
      * @param hql
      * @return
      */
-    public T queryOneByHql(String hql) {
-        return baseRepository.queryOneByHql(hql);
+    public T queryOneByHql(String hql, Class<T> clazz) {
+        return customRepository.queryOneByHql(hql, clazz);
     }
 
     /**
@@ -182,8 +186,8 @@ public abstract class BaseService<T, ID extends Serializable> {
      * @param hql
      * @return
      */
-    public List<T> queryArrayListByHql(String hql) {
-        return baseRepository.queryArrayListByHql(hql);
+    public List<T> queryArrayListByHql(String hql, Class<T> tClass) {
+        return customRepository.queryArrayListByHql(hql, tClass);
     }
 
 

@@ -30,7 +30,7 @@ public class UserInfoService extends BaseService<UserInfo,Long> {
         userInfo.setId(new Random().nextLong());
         userInfo.setName("yin");
         userInfoRepository.save(userInfo);
-        List<UserInfo> list = userInfoRepository.queryArrayListByHql("select a from UserInfo a");
+        List<UserInfo> list = queryArrayListByHql("select a from UserInfo a",UserInfo.class);
 //       Object[] obj1=list.get(0);
 //        for (Object s:obj1
 //             ) {
