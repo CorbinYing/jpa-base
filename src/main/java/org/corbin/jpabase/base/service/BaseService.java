@@ -167,27 +167,6 @@ public abstract class BaseService<T, ID extends Serializable> {
     }
 
     /**
-     * return a union domain which found by hql
-     *
-     * @param hql
-     * @return
-     */
-    public T queryOneByHql(String hql) {
-        return baseRepository.queryOneByHql(hql);
-    }
-
-    /**
-     * find list result with hql
-     *
-     * @param hql
-     * @return
-     */
-    public List<T> queryArrayListByHql(String hql) {
-        return baseRepository.queryArrayListByHql(hql);
-    }
-
-
-    /**
      * Returns the number of instances matching the given {@link Example}.
      *
      * @param example the {@link Example} to count instances for. Must not be {@literal null}.
@@ -272,5 +251,27 @@ public abstract class BaseService<T, ID extends Serializable> {
     <S extends T> List<S> saveAll(Iterable<S> entities) {
         return baseRepository.saveAll(entities);
     }
+
+
+    /**
+     * return a union domain which found by hql
+     *
+     * @param hql
+     * @return
+     */
+    public T queryOneByHql(String hql) {
+        return baseRepository.queryOneByHql(hql);
+    }
+
+    /**
+     * find list result with hql
+     *
+     * @param hql
+     * @return
+     */
+    public List<T> queryArrayListByHql(String hql) {
+        return baseRepository.queryArrayListByHql(hql);
+    }
+
 
 }
