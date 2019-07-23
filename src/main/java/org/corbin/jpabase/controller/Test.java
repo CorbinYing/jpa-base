@@ -1,5 +1,6 @@
 package org.corbin.jpabase.controller;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.corbin.jpabase.entity.UserInfo;
 import org.corbin.jpabase.server.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,17 @@ public class Test {
     private UserInfoService userInfoService;
 
     @GetMapping("/insert/user")
-    public void testCreateTable(){
-      //  userInfoService.testCommonService();
+    public void testCreateTable() {
+        //  userInfoService.testCommonService();
         userInfoService.insertUser();
-       UserInfo u= userInfoService.findByPK(5000937294228808804L);
-       System.out.println(u);
+        UserInfo u = userInfoService.findByPK(5000937294228808804L);
+        System.out.println(u);
 
+    }
+
+
+    @GetMapping("/1")
+    public void sdfyu() {
+        userInfoService.getef();
     }
 }

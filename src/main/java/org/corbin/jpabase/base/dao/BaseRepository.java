@@ -36,4 +36,7 @@ public interface BaseRepository<T, ID extends Serializable>
      * @return
      */
     T queryOneByHql(String hql);
+
+
+    T queryOneBySql(String sql,Class clzz);
 }

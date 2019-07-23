@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Random;
  * @date 2019/06/15
  */
 @Service
-public class UserInfoService extends BaseService<UserInfo,Long> {
+public class UserInfoService extends BaseService<UserInfo, Long> {
     @Autowired
     private UserInfoRepository userInfoRepository;
 
@@ -39,8 +40,16 @@ public class UserInfoService extends BaseService<UserInfo,Long> {
 //        }
 //       list.forEach(System.out::println);
 
-    //    list = userInfoRepository.findAll();
+        //    list = userInfoRepository.findAll();
         list.forEach(System.out::println);
+    }
 
+    public void getef() {
+        //   UserInfo u= queryOneByHql("select a.name from UserInfo a where a.id=8477759323643237963");
+      //  List<Map> u = userInfoRepository.test();
+        UserInfo u=queryBySql("select a.name from user_info a where a.id=8477759323643237963",UserInfo.class);
+    //    u.forEach(o->System.out.println(o.entrySet()));
+        System.out.println(u);
+        //return u;
     }
 }

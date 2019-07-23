@@ -273,5 +273,7 @@ public abstract class BaseService<T, ID extends Serializable> {
         return baseRepository.queryArrayListByHql(hql);
     }
 
-
+    public  T queryBySql(String nativeSql,Class clzz){
+        return baseRepository.queryOneBySql( nativeSql,clzz);
+    }
 }

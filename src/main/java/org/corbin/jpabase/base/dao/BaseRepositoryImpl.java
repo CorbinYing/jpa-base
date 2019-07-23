@@ -1,5 +1,11 @@
 package org.corbin.jpabase.base.dao;
 
+import com.alibaba.fastjson.JSON;
+import org.corbin.jpabase.entity.UserInfo;
+import org.hibernate.SQLQuery;
+import org.hibernate.query.internal.NativeQueryImpl;
+import org.hibernate.query.internal.QueryImpl;
+import org.hibernate.transform.Transformers;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import javax.persistence.EntityManager;
@@ -23,7 +29,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     public BaseRepositoryImpl(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
-        this.domainClass=domainClass;
+        this.domainClass = domainClass;
         this.em = em;
     }
 
@@ -50,8 +56,40 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     @Override
     public T queryOneByHql(String hql) {
         Query query = em.createQuery(hql);
+        System.out.println(query.getResultList());
         return (T) query.getSingleResult();
     }
+
+    /**
+     * jpa repository 中原生sql 查询的Query中，使用map接受返回结果中包括属性名，nice
+     * <p>
+     * <p>
+     * 此处不含属性名，需要设置
+     *
+     * @param sql
+     * @param clzz
+     * @return
+     */
+    @Override
+    public T queryOneBySql(String sql, Class clzz) {
+        Query query = em.createNativeQuery(sql);
+        //   query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        //输出属性
+        query.unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        String jsonString = JSON.toJSONString(query.getSingleResult());
+
+        System.out.println(jsonString);
+
+        T model = (T) JSON.parseObject(jsonString, clzz);
+
+
+        System.out.println(model);
+
+
+//        return (T) query.getSingleResult();
+        return null;
+    }
+
 
     //通过EntityManager来完成查询
 /*    @Override
